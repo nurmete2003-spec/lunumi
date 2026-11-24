@@ -1,16 +1,19 @@
-# Lunumi — Learn. Grow. Glow.
+# Lunumi — Learn. Grow. Glow.  (v3, Vite + React + TypeScript)
 
-## Kurulum (Faz 1)
-1. `npm install`
-2. Supabase'de proje aç. SQL Editor'da `supabase/migrations/001_schema.sql` dosyasını çalıştır.
-3. `.env.example` dosyasını `.env.local` olarak kopyala; Supabase URL ve anon key'i doldur.
-4. Supabase > Authentication > URL Configuration: Site URL = `http://localhost:3000`, Redirect URL'lere `http://localhost:3000/auth/callback` ekle.
-5. `npm run dev`
+## Yayın nasıl çalışır
+`main`'e push → GitHub Actions `npm ci` + `npm run build` → `dist/` klasörü GitHub Pages'e yüklenir.
+**Pages kaynağı "GitHub Actions" olmalı** (Settings → Pages → Build and deployment → Source). "Deploy from a branch" kalırsa
+site depo kökündeki eski dosyaları/README'yi gösterir; eski v2 dosyaları artık sitenin önüne geçemez çünkü yalnızca `dist/` yayınlanır.
 
-## Güvenlik
-- Tüm kullanıcı tablolarında RLS açık (yalnızca sahibi okur/yazar). Topluluk kütüphanesinde yalnızca `is_shared = true` kayıtlar okunur.
-- Gizli anahtarlar yalnızca sunucuda; `NEXT_PUBLIC_` önekli olanlar tarayıcıya açıktır (anon key RLS ile korunur).
-- Çalışma süresi `add_study_seconds` RPC'si ile gün/bölüm başına tek satırda toplanır (çift sayım yok).
+## Bir kerelik kurulum
+1. Supabase SQL Editor: `supabase/migrations/001_schema.sql` çalıştır.
+2. Supabase → Authentication → URL Configuration: Site URL = `https://KULLANICI.github.io/lunumi/`, Redirect URLs'e aynı adresi (sonda `/` ile) ekle.
+3. GitHub → Settings → Secrets and variables → Actions → New repository secret: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`.
+4. GitHub → Settings → Pages → Source: **GitHub Actions**.
+5. Depo adın `lunumi` değilse `vite.config.ts` içindeki `BASE` değerini `/depo-adi/` yap.
 
-## Durum
-Bkz. sohbetteki Faz 1 raporu.
+## Yerelde
+`npm install && npm run dev`
+
+## Yayında doğrulama
+Giriş sonrası sayfanın altında "Lunumi v3 · build <commit>" yazar; bu kodun GitHub'daki son commit'in ilk 7 hanesiyle eşleşmesi gerekir.

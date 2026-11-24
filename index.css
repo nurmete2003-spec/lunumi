@@ -1,0 +1,10 @@
+@tailwind base; @tailwind components; @tailwind utilities;
+:root { color-scheme: light; }
+body { @apply bg-cream font-body text-ink antialiased; background-image: radial-gradient(900px 500px at 85% -10%, #EDE6FA 0%, transparent 60%), radial-gradient(700px 400px at -10% 110%, #F7E4EA 0%, transparent 60%); background-attachment: fixed; }
+h1,h2,h3 { @apply font-display; }
+.card { @apply rounded-card bg-pearl/90 p-6 shadow-soft; }
+.btn { @apply inline-flex items-center justify-center rounded-chip bg-lavender-deep px-5 py-3 font-semibold text-pearl transition hover:bg-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lavender-deep disabled:opacity-60; }
+.btn-ghost { @apply inline-flex items-center justify-center rounded-chip bg-lavender-soft px-4 py-2 font-semibold text-lavender-deep hover:bg-lavender/60; }
+.field { @apply w-full rounded-chip border border-lavender/60 bg-pearl px-4 py-3 outline-none focus:border-lavender-deep focus:ring-2 focus:ring-lavender; }
+.empty { @apply rounded-chip border border-dashed border-lavender bg-lavender-soft/40 p-4 text-sm text-mute; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
